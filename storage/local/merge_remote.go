@@ -11,7 +11,7 @@ import (
 
 	"golang.org/x/sync/errgroup"
 
-	"github.com/sonatard/gocache/storage/remote"
+	"github.com/reillywatson/gocache/storage/remote"
 )
 
 // MergeRemote is a storage that is backed by a local storage and a remote storage.

@@ -4,8 +4,8 @@ import (
 	"context"
 	"log"
 
-	"github.com/sonatard/gocache/storage/local"
-	"github.com/sonatard/gocache/storage/remote"
+	"github.com/reillywatson/gocache/storage/local"
+	"github.com/reillywatson/gocache/storage/remote"
 )
 
 // New creates a new cache instance.

@@ -1,4 +1,4 @@
-module github.com/sonatard/gocache
+module github.com/reillywatson/gocache
 
 go 1.24.1
 

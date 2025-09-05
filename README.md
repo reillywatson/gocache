@@ -1,6 +1,6 @@
 # gocache
 
-[![GoDoc](https://pkg.go.dev/badge/github.com/sonatard/gocache)](https://pkg.go.dev/github.com/sonatard/gocache)
+[![GoDoc](https://pkg.go.dev/badge/github.com/reillywatson/gocache)](https://pkg.go.dev/github.com/reillywatson/gocache)
 
 gocache is a tool to manage go build cache.
 
@@ -12,14 +12,14 @@ gocache is a tool to manage go build cache.
 ## Using
 
 ```sh
-$ go get -tool github.com/sonatard/gocache@latest
+$ go get -tool github.com/reillywatson/gocache@latest
 $ GOCACHEPROG="go tool gocache" go install std
 ```
 
 or
 
 ```
-$ go install github.com/sonatard/gocache@latest
+$ go install github.com/reillywatson/gocache@latest
 $ GOCACHEPROG="gocache" go install std
 ```
 

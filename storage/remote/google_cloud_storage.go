@@ -10,7 +10,7 @@ import (
 	"path"
 	"runtime"
 
-	"github.com/sonatard/gocache/storage/count"
+	"github.com/reillywatson/gocache/storage/count"
 
 	"cloud.google.com/go/storage"
 )
