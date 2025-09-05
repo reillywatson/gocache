@@ -4,12 +4,13 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"github.com/sonatard/gocache/storage/count"
 	"io"
 	"log"
 	"os"
 	"path"
 	"runtime"
+
+	"github.com/sonatard/gocache/storage/count"
 
 	"cloud.google.com/go/storage"
 )
@@ -78,7 +79,7 @@ func (g *GoogleCloudStorage) Start(ctx context.Context) error {
 		log.Printf("[%s] start to %s", g.Kind(), g.bucketFullPath())
 	}
 	if _, err := g.bucket.Attrs(ctx); err != nil {
-		return fmt.Errorf("[%s] failed to start %s", g.Kind(), g.bucketFullPath())
+		return fmt.Errorf("[%s] failed to start %s: %w", g.Kind(), g.bucketFullPath(), err)
 	}
 	return nil
 }
@@ -107,7 +108,7 @@ func (g *GoogleCloudStorage) Get(ctx context.Context, actionID string) (string, 
 	reader, err := obj.NewReader(ctx)
 	if err != nil {
 		g.Count.GetErrors.Add(1)
-		return "", 0, nil, fmt.Errorf("[%s] get %s/%s (failed to create GCS reader)", g.Kind(), g.bucketFullPath(), actionID)
+		return "", 0, nil, fmt.Errorf("[%s] get %s/%s (failed to create GCS reader): %w", g.Kind(), g.bucketFullPath(), actionID, err)
 	}
 
 	if g.verbose {
@@ -130,7 +131,7 @@ func (g *GoogleCloudStorage) Put(ctx context.Context, actionID, outputID string,
 
 	if _, err = io.Copy(writer, body); err != nil {
 		g.Count.PutErrors.Add(1)
-		return fmt.Errorf("[%s] put failed for %s/%s (failed to copy data to GCS outputID: %s, size: %d)", g.Kind(), g.bucketFullPath(), actionID, outputID, size)
+		return fmt.Errorf("[%s] put failed for %s/%s (failed to copy data to GCS outputID: %s, size: %d): %w", g.Kind(), g.bucketFullPath(), actionID, outputID, size, err)
 	}
 
 	if g.verbose {
